@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class Login {
     private WebDriver driver;
 
-    public void setUp(){
+    public void setUp() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
 
@@ -34,15 +34,16 @@ public class Login {
         //Click on the Sign in button
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/form/button")).click();
 
+        Thread.sleep(10000);
+
+        //Close window
+        driver.quit();
+
     }
     //Close the browser after
-    public static void main(String args[]){
+    public static void main(String args[]) throws InterruptedException{
         Login test = new Login();
         test.setUp();
     }
 
-    public void setDriver(WebDriver driver){
-        this.driver = driver;
-        driver.quit();
-    }
 }
